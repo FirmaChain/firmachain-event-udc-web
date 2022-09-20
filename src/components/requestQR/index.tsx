@@ -4,19 +4,32 @@ import QRCode from 'qrcode.react';
 
 import { useInterval } from '../../utils/interval';
 
-import { RequestQRWrapper, RequestQRTimer } from '../../styles';
+import { RequestQRWrapper } from '../../styles';
 
 interface IProps {
   requestType: string;
   signer?: string;
   nftType?: number;
+  qrSize: number;
   isActive: boolean;
+  isRefresh: boolean;
+  setRefresh: (isRefresh: boolean) => void;
+  setTimerText: (timerText: string) => void;
   callback: (result: any) => void;
 }
 
-const RequestQR = ({ requestType, signer = '', nftType = -1, isActive, callback }: IProps) => {
+const RequestQR = ({
+  requestType,
+  signer = '',
+  nftType = -1,
+  isActive,
+  isRefresh,
+  setRefresh,
+  qrSize,
+  setTimerText,
+  callback,
+}: IProps) => {
   const [requestKey, setRequestKey] = useState('');
-  const [timerText, setTimerText] = useState('00:00');
   const [expireDate, setExpireDate] = useState<Date | null>(null);
   const [timerFinish, setTimerFinish] = useState(false);
 
@@ -30,6 +43,14 @@ const RequestQR = ({ requestType, signer = '', nftType = -1, isActive, callback 
     }
   }, [isActive]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if (isRefresh) {
+      expiredAction();
+      setTimerFinish(true);
+      setRefresh(false);
+    }
+  }, [isRefresh]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const generateRequest = async () => {
     try {
       const response = await axios.post(`/event/sign/${requestType}`, { signer, nftType });
@@ -38,7 +59,7 @@ const RequestQR = ({ requestType, signer = '', nftType = -1, isActive, callback 
       }
 
       const expire = new Date();
-      expire.setMinutes(expire.getMinutes() + 2);
+      expire.setMinutes(expire.getMinutes() + 3);
       setExpireDate(expire);
 
       setTimerFinish(false);
@@ -53,7 +74,7 @@ const RequestQR = ({ requestType, signer = '', nftType = -1, isActive, callback 
     try {
       const response = await axios.get(`/event/requests/${requestKey}`);
 
-      if (response.data.code !== 0) {
+      if (response.data.code < 0 || response.data.status === -1) {
         throw new Error('INVALID REQUEST');
       }
       return response.data.result;
@@ -116,8 +137,7 @@ const RequestQR = ({ requestType, signer = '', nftType = -1, isActive, callback 
 
   return (
     <RequestQRWrapper>
-      <QRCode value={`sign://${requestKey}`} />
-      <RequestQRTimer>{timerText}</RequestQRTimer>
+      <QRCode value={`sign://${requestKey}`} size={qrSize} />
     </RequestQRWrapper>
   );
 };

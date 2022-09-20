@@ -5,14 +5,14 @@ import Ticket from '../ticket';
 import { useInterval } from '../../utils/interval';
 
 import {
-  TitleText,
   CharacterList,
   Character,
-  CharacterImage,
-  CharacterName,
-  CharacterDescription,
   TicketCount,
   Step3Wrapper,
+  Step3Title,
+  BackgroundWrapper,
+  StarState,
+  HeartState,
 } from '../../styles';
 
 interface IProps {
@@ -23,7 +23,7 @@ interface IProps {
   signer: string;
 }
 
-const Step3 = ({ isActive, setStep, t, setLoading, signer }: IProps) => {
+const Step3 = ({ isActive, setStep, t, signer }: IProps) => {
   const [ticketCount, setTicketCount] = useState([0, 0, 0]);
   const [isActiveTicket, setActiveTicket] = useState(false);
   const [characterType, setCharacterType] = useState(-1);
@@ -67,42 +67,30 @@ const Step3 = ({ isActive, setStep, t, setLoading, signer }: IProps) => {
 
   return (
     <Step3Wrapper>
+      <BackgroundWrapper>
+        <StarState src='/images/common/img_top_menu_star.png' />
+        <HeartState src='/images/common/img_top_menu_heart.png' />
+      </BackgroundWrapper>
       <Ticket
+        t={t}
         isActive={isActiveTicket}
         setActiveTicket={setActiveTicket}
-        ticketName={t(`step3Character${characterType + 1}Name`)}
         characterType={characterType}
         signer={signer}
         callbackTicket={callbackTicket}
       />
-      <TitleText>{t('step3Text1')}</TitleText>
+      <Step3Title src={t('step3Text1')} />
       <CharacterList>
-        <Character onClick={() => onClickCharacter(0)} isAvailable={ticketCount[0] > 0}>
-          <CharacterImage index={0} />
-          <CharacterName>{t('step3Character1Name')}</CharacterName>
-          <CharacterDescription>{t('step3Character1Desc')}</CharacterDescription>
-          <TicketCount>
-            {t('step3RemainingText')} : {ticketCount[0]}
-            {t('step3CountText')}
-          </TicketCount>
+        <Character onClick={() => onClickCharacter(1)} isAvailable={ticketCount[1] > 0} src={t('step3Character2')}>
+          <TicketCount>{ticketCount[1]}</TicketCount>
         </Character>
-        <Character onClick={() => onClickCharacter(1)} isAvailable={ticketCount[1] > 0}>
-          <CharacterImage index={1} />
-          <CharacterName>{t('step3Character2Name')}</CharacterName>
-          <CharacterDescription>{t('step3Character2Desc')}</CharacterDescription>
-          <TicketCount>
-            {t('step3RemainingText')} : {ticketCount[1]}
-            {t('step3CountText')}
-          </TicketCount>
+
+        <Character onClick={() => onClickCharacter(2)} isAvailable={ticketCount[2] > 0} src={t('step3Character3')}>
+          <TicketCount>{ticketCount[2]}</TicketCount>
         </Character>
-        <Character onClick={() => onClickCharacter(2)} isAvailable={ticketCount[2] > 0}>
-          <CharacterImage index={2} />
-          <CharacterName>{t('step3Character3Name')}</CharacterName>
-          <CharacterDescription>{t('step3Character3Desc')}</CharacterDescription>
-          <TicketCount>
-            {t('step3RemainingText')} : {ticketCount[2]}
-            {t('step3CountText')}
-          </TicketCount>
+
+        <Character onClick={() => onClickCharacter(0)} isAvailable={ticketCount[0] > 0} src={t('step3Character1')}>
+          <TicketCount>{ticketCount[0]}</TicketCount>
         </Character>
       </CharacterList>
     </Step3Wrapper>

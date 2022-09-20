@@ -133,6 +133,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  overflow:hidden;
 }
 
 a {
@@ -176,3 +177,4 @@ body > #root > div {
 html {
   font-size: 62.5%;
 }
+

@@ -1,67 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import RequestQR from '../requestQR';
 
-import {
-  TicketWrapper,
-  TicketBox,
-  TicketLeft,
-  NftInfoWrapper,
-  CharacterTicketImage,
-  TicketName,
-  TicketText1,
-  TicketText2,
-  PriceWrapper,
-  PriceText1,
-  PriceText2,
-  TicketRight,
-  CloseButton,
-} from '../../styles';
+import { TicketWrapper, TicketBox, CloseButton, TicketImage, QRBox, TimerText2 } from '../../styles';
 
 interface IProps {
+  t: (key: string) => string;
   isActive: boolean;
   setActiveTicket: (isActive: boolean) => void;
-  ticketName: string;
   characterType: number;
   signer: string;
   callbackTicket: () => void;
 }
 
-const Ticket = ({ isActive, setActiveTicket, ticketName, characterType, signer, callbackTicket }: IProps) => {
+const Ticket = ({ t, isActive, setActiveTicket, characterType, signer, callbackTicket }: IProps) => {
+  const [ticketName, setTicketName] = useState('');
+  const [timerText, setTimerText] = useState('00:00');
+  const [isRefresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    setTicketName(t(`step3CharacterTicket${characterType + 1}`));
+  }, [characterType]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const closeTicket = () => {
     setActiveTicket(false);
   };
 
   const requestQRCallback = () => {
+    setActiveTicket(false);
     callbackTicket();
+  };
+
+  const refreshQR = () => {
+    setRefresh(true);
   };
 
   return (
     <TicketWrapper active={isActive}>
       <TicketBox>
-        <CloseButton onClick={closeTicket} />
-        <TicketLeft>
-          <NftInfoWrapper>
-            <CharacterTicketImage index={characterType} />
-            <TicketName>
-              <TicketText1>{ticketName}</TicketText1>
-              <TicketText2>TICKET</TicketText2>
-            </TicketName>
-          </NftInfoWrapper>
-          <PriceWrapper>
-            <PriceText1>PRICE</PriceText1>
-            <PriceText2>1 FCT</PriceText2>
-          </PriceWrapper>
-        </TicketLeft>
-        <TicketRight>
-          <RequestQR
-            requestType='play'
-            isActive={isActive}
-            callback={requestQRCallback}
-            signer={signer}
-            nftType={characterType}
-          />
-        </TicketRight>
+        <TicketImage src={ticketName}>
+          <QRBox>
+            <RequestQR
+              requestType='play'
+              isActive={isActive}
+              isRefresh={isRefresh}
+              setRefresh={setRefresh}
+              callback={requestQRCallback}
+              signer={signer}
+              nftType={characterType}
+              qrSize={68}
+              setTimerText={setTimerText}
+            />
+          </QRBox>
+          <TimerText2 onClick={refreshQR}>{timerText}</TimerText2>
+          <CloseButton onClick={closeTicket} src={'/images/step3/icon_close_white_32px.png'} />
+        </TicketImage>
       </TicketBox>
     </TicketWrapper>
   );
