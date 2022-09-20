@@ -35,7 +35,7 @@ const Step2 = ({ isActive, setStep, setLoading, setSigner, t }: IProps) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const checkNextStep = async (signer: string) => {
-    const userInfoResponse = await axios.get(`/event/users/${signer}`);
+    const userInfoResponse = await axios.get(`${process.env.REACT_APP_API_HOST}/event/users/${signer}`);
 
     if (userInfoResponse.data.code === 0) {
       const rewardData = JSON.parse(userInfoResponse.data.result.rewardData);

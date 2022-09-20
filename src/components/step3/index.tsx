@@ -45,7 +45,7 @@ const Step3 = ({ isActive, setStep, t, signer }: IProps) => {
   }, 5000);
 
   const getNftCount = async () => {
-    const response = await axios.get(`/event/nft`);
+    const response = await axios.get(`${process.env.REACT_APP_API_HOST}/event/nft`);
 
     if (response.data.code === 0) {
       setTicketCount(response.data.result.nftTicketCountList);

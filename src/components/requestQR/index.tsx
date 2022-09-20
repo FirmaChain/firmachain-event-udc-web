@@ -53,7 +53,10 @@ const RequestQR = ({
 
   const generateRequest = async () => {
     try {
-      const response = await axios.post(`/event/sign/${requestType}`, { signer, nftType });
+      const response = await axios.post(`${process.env.REACT_APP_API_HOST}/event/sign/${requestType}`, {
+        signer,
+        nftType,
+      });
       if (response.data.code !== 0) {
         throw new Error('INVALID REQUEST');
       }
@@ -72,7 +75,7 @@ const RequestQR = ({
 
   const getRequestStatus = async (requestKey: string) => {
     try {
-      const response = await axios.get(`/event/requests/${requestKey}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_HOST}/event/requests/${requestKey}`);
 
       if (response.data.code < 0 || response.data.status === -1) {
         throw new Error('INVALID REQUEST');

@@ -50,7 +50,7 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
   }, [isActive]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getUserInfo = async () => {
-    const userInfoResponse = await axios.get(`/event/users/${signer}`);
+    const userInfoResponse = await axios.get(`${process.env.REACT_APP_API_HOST}/event/users/${signer}`);
 
     if (userInfoResponse.data.code === 0) {
       const rewardData = JSON.parse(userInfoResponse.data.result.rewardData);
