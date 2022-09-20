@@ -668,6 +668,8 @@ export const TimerTextBox = styled.div<{ src: string }>`
   background-repeat: no-repeat;
   background-position: center;
   z-index: 19;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 `;
 
 export const TimerText = styled.div`
@@ -686,6 +688,8 @@ export const TimerText2 = styled.div`
   top: 184px;
   right: 122px;
   padding: 10px 15px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 `;
 
 export const BackgroundStep2LeftCloud1 = styled.img`
@@ -881,6 +885,8 @@ export const TimerText3 = styled.div`
   top: 437px;
   transform: translate(-50%, 0);
   padding: 10px 40px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 `;
 
 export const TokenRewardWrapper = styled.div`
