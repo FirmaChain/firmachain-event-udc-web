@@ -11,7 +11,7 @@ export const HeaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 5;
+  z-index: 13;
 `;
 
 export const Wrapper = styled.div`

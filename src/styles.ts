@@ -143,7 +143,7 @@ export const LoadingWrapper = styled.div<{ active: boolean }>`
   height: 100vh;
   background-color: #000000bb;
   padding-bottom: 5px;
-  z-index: 12;
+  z-index: 14;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -280,7 +280,7 @@ export const ContentsContainer = styled.div<{ currentStep: number }>`
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 10;
+  z-index: 12;
   & > div {
     display: none;
     flex: 1;
