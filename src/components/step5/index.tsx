@@ -99,7 +99,7 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
         <RewardEffectBreadpare src='/images/step5/img_effect_breadpare.png' />
         <RewardEffectLeftStar src='/images/step5/img_effect_star_left.png' />
         <RewardEffectRightStar src='/images/step5/img_effect_star_right.png' />
-        <RewardBackground src='/images/step5/box_uet_count.png' />
+        <RewardBackground src={t('step5Box')} />
       </BackgroundWrapper>
       <RewardContents>
         <RewardTitle src={t('step5Text1')} />

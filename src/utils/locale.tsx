@@ -3,7 +3,7 @@ import { useState } from 'react';
 import localeJSON from '../locale.json';
 
 export const useTranslate = () => {
-  const [language, setLanguage] = useState('kr');
+  const [language, setLanguage] = useState('en');
   const locale: any = localeJSON;
 
   const t = (key: string) => {
