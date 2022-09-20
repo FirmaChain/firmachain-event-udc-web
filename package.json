@@ -22,7 +22,8 @@
     "typescript": "^4.3.2"
   },
   "scripts": {
-    "start": "react-app-env --env-file=.env start"
+    "start": "react-app-env --env-file=.env start",
+    "build": "react-app-env --env-file=.env build"
   },
   "eslintConfig": {
     "extends": [
