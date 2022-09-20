@@ -23,7 +23,7 @@ interface IProps {
   signer: string;
 }
 
-const Step3 = ({ isActive, setStep, t, signer }: IProps) => {
+const Step3 = ({ isActive, setStep, setLoading, t, signer }: IProps) => {
   const [ticketCount, setTicketCount] = useState([0, 0, 0]);
   const [isActiveTicket, setActiveTicket] = useState(false);
   const [characterType, setCharacterType] = useState(-1);
@@ -74,6 +74,7 @@ const Step3 = ({ isActive, setStep, t, signer }: IProps) => {
       <Ticket
         t={t}
         isActive={isActiveTicket}
+        setLoading={setLoading}
         setActiveTicket={setActiveTicket}
         characterType={characterType}
         signer={signer}

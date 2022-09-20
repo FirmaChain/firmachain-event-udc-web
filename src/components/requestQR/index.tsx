@@ -14,6 +14,7 @@ interface IProps {
   isActive: boolean;
   isRefresh: boolean;
   setRefresh: (isRefresh: boolean) => void;
+  setLoading: (isLoading: boolean) => void;
   setTimerText: (timerText: string) => void;
   callback: (result: any) => void;
 }
@@ -25,6 +26,7 @@ const RequestQR = ({
   isActive,
   isRefresh,
   setRefresh,
+  setLoading,
   qrSize,
   setTimerText,
   callback,
@@ -35,7 +37,12 @@ const RequestQR = ({
 
   useEffect(() => {
     if (isActive) {
+      setLoading(true);
+
       generateRequest()
+        .then(() => {
+          setLoading(false);
+        })
         .catch((error) => {
           console.log(error);
         })

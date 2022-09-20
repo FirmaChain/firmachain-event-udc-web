@@ -8,12 +8,13 @@ interface IProps {
   t: (key: string) => string;
   isActive: boolean;
   setActiveTicket: (isActive: boolean) => void;
+  setLoading: (isLoading: boolean) => void;
   characterType: number;
   signer: string;
   callbackTicket: () => void;
 }
 
-const Ticket = ({ t, isActive, setActiveTicket, characterType, signer, callbackTicket }: IProps) => {
+const Ticket = ({ t, isActive, setActiveTicket, characterType, signer, setLoading, callbackTicket }: IProps) => {
   const [ticketName, setTicketName] = useState('');
   const [timerText, setTimerText] = useState('00:00');
   const [isRefresh, setRefresh] = useState(false);
@@ -44,6 +45,7 @@ const Ticket = ({ t, isActive, setActiveTicket, characterType, signer, callbackT
               requestType='play'
               isActive={isActive}
               isRefresh={isRefresh}
+              setLoading={setLoading}
               setRefresh={setRefresh}
               callback={requestQRCallback}
               signer={signer}

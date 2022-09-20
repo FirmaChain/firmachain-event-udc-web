@@ -111,6 +111,7 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
             isActive={isActive}
             isRefresh={isRefresh}
             setRefresh={setRefresh}
+            setLoading={setLoading}
             callback={requestQRCallback}
             signer={signer}
             setTimerText={setTimerText}

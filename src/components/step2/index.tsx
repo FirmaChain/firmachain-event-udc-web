@@ -103,6 +103,7 @@ const Step2 = ({ isActive, setStep, setLoading, setSigner, t }: IProps) => {
       <QRWrapper src={'/images/step2/img_qr_300px.png'}>
         <RequestQR
           requestType='login'
+          setLoading={setLoading}
           isActive={isActive}
           isRefresh={isRefresh}
           setRefresh={setRefresh}
