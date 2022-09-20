@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Ticket from '../ticket';
 import { useInterval } from '../../utils/interval';
 
 import {
@@ -17,16 +16,14 @@ import {
 
 interface IProps {
   isActive: boolean;
-  setStep: (step: number) => void;
   t: (key: string) => string;
-  setLoading: (isLoading: boolean) => void;
   signer: string;
+  setCharacterType: (type: number) => void;
+  setActiveTicket: (isActive: boolean) => void;
 }
 
-const Step3 = ({ isActive, setStep, setLoading, t, signer }: IProps) => {
+const Step3 = ({ isActive, setCharacterType, setActiveTicket, t }: IProps) => {
   const [ticketCount, setTicketCount] = useState([0, 0, 0]);
-  const [isActiveTicket, setActiveTicket] = useState(false);
-  const [characterType, setCharacterType] = useState(-1);
 
   useEffect(() => {
     if (isActive) {
@@ -61,25 +58,13 @@ const Step3 = ({ isActive, setStep, setLoading, t, signer }: IProps) => {
     setActiveTicket(true);
   };
 
-  const callbackTicket = () => {
-    setStep(3);
-  };
-
   return (
     <Step3Wrapper>
       <BackgroundWrapper>
         <StarState src='/images/common/img_top_menu_star.png' />
         <HeartState src='/images/common/img_top_menu_heart.png' />
       </BackgroundWrapper>
-      <Ticket
-        t={t}
-        isActive={isActiveTicket}
-        setLoading={setLoading}
-        setActiveTicket={setActiveTicket}
-        characterType={characterType}
-        signer={signer}
-        callbackTicket={callbackTicket}
-      />
+
       <Step3Title src={t('step3Text1')} />
       <CharacterList>
         <Character onClick={() => onClickCharacter(1)} isAvailable={ticketCount[1] > 0} src={t('step3Character2')}>

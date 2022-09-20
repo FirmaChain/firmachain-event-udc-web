@@ -258,13 +258,13 @@ export const TopCloud4 = styled.img`
 `;
 
 export const TicketWrapper = styled.div<{ active: boolean }>`
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0px;
+  left: 0;
   width: 100vw;
   height: 101%;
   background-color: #000000bb;
-  z-index: 14;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   justify-content: center;

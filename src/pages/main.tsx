@@ -7,6 +7,8 @@ import Step3 from '../components/step3';
 import Step4 from '../components/step4';
 import Step5 from '../components/step5';
 
+import Ticket from '../components/ticket';
+
 import { useTranslate } from '../utils/locale';
 
 import {
@@ -30,6 +32,13 @@ const Main = ({ setLoading }: IProps) => {
   const [currentStep, setStep] = useState(0);
   const [signer, setSigner] = useState('');
 
+  const [isActiveTicket, setActiveTicket] = useState(false);
+  const [characterType, setCharacterType] = useState(-1);
+
+  const callbackTicket = () => {
+    setStep(3);
+  };
+
   return (
     <>
       <MainContainer>
@@ -43,10 +52,25 @@ const Main = ({ setLoading }: IProps) => {
             <TopCloud4 src='images/common/img_top_cloud_4.png' />
           </TopCloundWrapper>
         </CommonBackground>
+        <Ticket
+          t={t}
+          isActive={isActiveTicket}
+          setLoading={setLoading}
+          setActiveTicket={setActiveTicket}
+          characterType={characterType}
+          signer={signer}
+          callbackTicket={callbackTicket}
+        />
         <ContentsContainer currentStep={currentStep}>
           <Step1 isActive={currentStep === 0} setStep={setStep} setLanguage={setLanguage} />
           <Step2 isActive={currentStep === 1} setStep={setStep} t={t} setLoading={setLoading} setSigner={setSigner} />
-          <Step3 isActive={currentStep === 2} setStep={setStep} t={t} setLoading={setLoading} signer={signer} />
+          <Step3
+            isActive={currentStep === 2}
+            t={t}
+            signer={signer}
+            setActiveTicket={setActiveTicket}
+            setCharacterType={setCharacterType}
+          />
           <Step4 isActive={currentStep === 3} setStep={setStep} />
           <Step5
             isActive={currentStep === 4}
