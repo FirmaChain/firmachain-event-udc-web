@@ -69,7 +69,7 @@ const Step2 = ({ isActive, setStep, setLoading, setSigner, t }: IProps) => {
           }, 1000);
         } else {
           enqueueSnackbar(t('alreadyFinish'), {
-            variant: 'error',
+            variant: 'info',
             autoHideDuration: 3000,
           });
 

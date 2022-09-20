@@ -45,7 +45,7 @@ const Ticket = ({ t, isActive, setActiveTicket, characterType, signer, setLoadin
               requestType='play'
               isActive={isActive}
               isRefresh={isRefresh}
-              setLoading={setLoading}
+              setLoading={() => {}}
               setRefresh={setRefresh}
               callback={requestQRCallback}
               signer={signer}
