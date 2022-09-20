@@ -85,6 +85,10 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
     );
   };
 
+  const refreshQR = () => {
+    setRefresh(true);
+  };
+
   return (
     <Step5Wrapper>
       <NftNotification>
@@ -117,7 +121,7 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
             setTimerText={setTimerText}
           />
         </QRDiv>
-        <TimerText3>{timerText}</TimerText3>
+        <TimerText3 onClick={refreshQR}>{timerText}</TimerText3>
       </RewardContents>
     </Step5Wrapper>
   );

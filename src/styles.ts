@@ -143,7 +143,7 @@ export const LoadingWrapper = styled.div<{ active: boolean }>`
   height: 100vh;
   background-color: #000000bb;
   padding-bottom: 5px;
-  z-index: 14;
+  z-index: 20;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -264,7 +264,7 @@ export const TicketWrapper = styled.div<{ active: boolean }>`
   width: 100vw;
   height: 101%;
   background-color: #000000bb;
-  z-index: 12;
+  z-index: 14;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -280,7 +280,7 @@ export const ContentsContainer = styled.div<{ currentStep: number }>`
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 12;
+  z-index: 13;
   & > div {
     display: none;
     flex: 1;
@@ -667,7 +667,7 @@ export const TimerTextBox = styled.div<{ src: string }>`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 99;
+  z-index: 19;
 `;
 
 export const TimerText = styled.div`
