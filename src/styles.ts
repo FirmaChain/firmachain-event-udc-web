@@ -957,6 +957,12 @@ export const NftImage = styled.img`
   width: 150px;
   height: 150px;
 `;
+
+export const NftImageCard = styled.img`
+  width: 124px;
+  height: 124px;
+`;
+
 export const NftName = styled.div`
   font-size: 1.8rem;
   line-height: 24px;

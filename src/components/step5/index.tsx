@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import RequestQR from '../requestQR';
-
 import {
   Step5Wrapper,
   BackgroundWrapper,
@@ -20,9 +18,7 @@ import {
   NumberImg,
   CommaImg,
   SymbolImg,
-  NftNotification,
-  NftImage,
-  NftName,
+  NftImageCard,
 } from '../../styles';
 
 interface IProps {
@@ -36,9 +32,7 @@ interface IProps {
 
 const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) => {
   const [tokenAmount, setTokenAmount] = useState(10000);
-  const [isRefresh, setRefresh] = useState(false);
-  const [timerText, setTimerText] = useState('00:00');
-  const [nftName, setNftName] = useState('');
+  // const [nftName, setNftName] = useState('');
   const [nftImageURL, setNftImageURL] = useState('');
 
   useEffect(() => {
@@ -55,21 +49,21 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
     if (userInfoResponse.data.code === 0) {
       const rewardData = JSON.parse(userInfoResponse.data.result.rewardData);
       setNftImageURL(rewardData.imageURL);
-      setNftName(rewardData.name);
+      // setNftName(rewardData.name);
       setTokenAmount(rewardData.tokenData);
     } else {
       throw new Error('INVALID REQUEST');
     }
   };
 
-  const requestQRCallback = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSigner('');
-      setStep(0);
-    }, 2000);
-  };
+  // const requestQRCallback = () => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     setSigner('');
+  //     setStep(0);
+  //   }, 2000);
+  // };
 
   const renderNumberImage = () => {
     const tokenNumber = tokenAmount.toString().split('');
@@ -86,15 +80,21 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
   };
 
   const refreshQR = () => {
-    setRefresh(true);
+    // setRefresh(true);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSigner('');
+      setStep(0);
+    }, 2000);
   };
 
   return (
     <Step5Wrapper>
-      <NftNotification>
+      {/* <NftNotification>
         <NftImage src={nftImageURL} />
         <NftName>{nftName}</NftName>
-      </NftNotification>
+      </NftNotification> */}
       <BackgroundWrapper>
         <RewardEffectBreadpare src='/images/step5/img_effect_breadpare.png' />
         <RewardEffectLeftStar src='/images/step5/img_effect_star_left.png' />
@@ -109,7 +109,8 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
           <SymbolImg src='/images/common/text_uet@3x.png' />
         </TokenRewardWrapper>
         <QRDiv>
-          <RequestQR
+          <NftImageCard src={nftImageURL} />
+          {/* <RequestQR
             qrSize={100}
             requestType='reward'
             isActive={isActive}
@@ -119,9 +120,9 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
             callback={requestQRCallback}
             signer={signer}
             setTimerText={setTimerText}
-          />
+          /> */}
         </QRDiv>
-        <TimerText3 onClick={refreshQR}>{timerText}</TimerText3>
+        <TimerText3 onClick={refreshQR}>close</TimerText3>
       </RewardContents>
     </Step5Wrapper>
   );
