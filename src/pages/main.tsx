@@ -29,7 +29,7 @@ interface IProps {
 
 const Main = ({ setLoading }: IProps) => {
   const { t, setLanguage } = useTranslate();
-  const [currentStep, setStep] = useState(4);
+  const [currentStep, setStep] = useState(0);
   const [signer, setSigner] = useState('');
 
   const [isActiveTicket, setActiveTicket] = useState(false);
