@@ -33,9 +33,7 @@ interface IProps {
 const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) => {
   const [tokenAmount, setTokenAmount] = useState(10000);
   // const [nftName, setNftName] = useState('');
-  const [nftImageURL, setNftImageURL] = useState(
-    'https://ipfs-dev.firmachain.dev/ipfs/Qmb6A4ZTMiMMijHc8gqk639MCYsAbKrikW5AZsdE7ZmSyz'
-  );
+  const [nftImageURL, setNftImageURL] = useState('');
 
   useEffect(() => {
     if (isActive) {
