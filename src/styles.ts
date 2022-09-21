@@ -451,6 +451,18 @@ export const CloseButton = styled.img`
   -webkit-tap-highlight-color: transparent;
 `;
 
+export const CloseButton2 = styled.img`
+  position: absolute;
+  bottom: -65px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  z-index: 8;
+`;
+
 export const RequestQRWrapper = styled.div`
   width: auto;
   display: flex;
@@ -959,8 +971,9 @@ export const NftImage = styled.img`
 `;
 
 export const NftImageCard = styled.img`
-  width: 124px;
-  height: 124px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
 `;
 
 export const NftName = styled.div`

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
+import { useSnackbar } from 'notistack';
 
 import { useInterval } from '../../utils/interval';
 
@@ -13,6 +14,8 @@ interface IProps {
   qrSize: number;
   isActive: boolean;
   isRefresh: boolean;
+  t: (key: string) => string;
+  setActive: (isActive: boolean) => void;
   setRefresh: (isRefresh: boolean) => void;
   setLoading: (isLoading: boolean) => void;
   setTimerText: (timerText: string) => void;
@@ -23,7 +26,9 @@ const RequestQR = ({
   requestType,
   signer = '',
   nftType = -1,
+  t,
   isActive,
+  setActive,
   isRefresh,
   setRefresh,
   setLoading,
@@ -34,6 +39,7 @@ const RequestQR = ({
   const [requestKey, setRequestKey] = useState('');
   const [expireDate, setExpireDate] = useState<Date | null>(null);
   const [timerFinish, setTimerFinish] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (isActive) {
@@ -44,7 +50,12 @@ const RequestQR = ({
           setLoading(false);
         })
         .catch((error) => {
+          setActive(false);
           console.log(error);
+          enqueueSnackbar(t('notenough'), {
+            variant: 'info',
+            autoHideDuration: 3000,
+          });
         })
         .finally(() => {});
     }

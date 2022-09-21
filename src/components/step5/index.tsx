@@ -11,7 +11,6 @@ import {
   RewardContents,
   RewardTitle,
   QRDiv,
-  TimerText3,
   TokenRewardWrapper,
   TokenAmountWrapper,
   TokenIcon,
@@ -19,6 +18,7 @@ import {
   CommaImg,
   SymbolImg,
   NftImageCard,
+  CloseButton2,
 } from '../../styles';
 
 interface IProps {
@@ -33,7 +33,9 @@ interface IProps {
 const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) => {
   const [tokenAmount, setTokenAmount] = useState(10000);
   // const [nftName, setNftName] = useState('');
-  const [nftImageURL, setNftImageURL] = useState('');
+  const [nftImageURL, setNftImageURL] = useState(
+    'https://ipfs-dev.firmachain.dev/ipfs/Qmb6A4ZTMiMMijHc8gqk639MCYsAbKrikW5AZsdE7ZmSyz'
+  );
 
   useEffect(() => {
     if (isActive) {
@@ -79,14 +81,14 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
     );
   };
 
-  const refreshQR = () => {
-    // setRefresh(true);
+  const resetGame = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setSigner('');
+      setNftImageURL('');
       setStep(0);
-    }, 2000);
+    }, 1300);
   };
 
   return (
@@ -122,7 +124,7 @@ const Step5 = ({ isActive, t, setStep, setLoading, setSigner, signer }: IProps) 
             setTimerText={setTimerText}
           /> */}
         </QRDiv>
-        <TimerText3 onClick={refreshQR}>close</TimerText3>
+        <CloseButton2 onClick={resetGame} src='/images/step5/icon_close_white_50px.png' />
       </RewardContents>
     </Step5Wrapper>
   );

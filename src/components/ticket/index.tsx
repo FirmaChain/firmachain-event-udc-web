@@ -43,7 +43,9 @@ const Ticket = ({ t, isActive, setActiveTicket, characterType, signer, setLoadin
           <QRBox>
             <RequestQR
               requestType='play'
+              t={t}
               isActive={isActive}
+              setActive={setActiveTicket}
               isRefresh={isRefresh}
               setLoading={() => {}}
               setRefresh={setRefresh}

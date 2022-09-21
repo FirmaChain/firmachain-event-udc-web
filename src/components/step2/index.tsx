@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
 
 import RequestQR from '../requestQR';
 
@@ -18,8 +19,6 @@ import {
   Step2Character2,
   Step2Character1Star,
 } from '../../styles';
-
-import { useSnackbar } from 'notistack';
 
 interface IProps {
   isActive: boolean;
@@ -103,8 +102,10 @@ const Step2 = ({ isActive, setStep, setLoading, setSigner, t }: IProps) => {
       <QRWrapper src={'/images/step2/img_qr_300px.png'}>
         <RequestQR
           requestType='login'
+          t={t}
           setLoading={setLoading}
           isActive={isActive}
+          setActive={() => {}}
           isRefresh={isRefresh}
           setRefresh={setRefresh}
           setTimerText={setTimerText}
