@@ -16,7 +16,7 @@ const Step4 = ({ isActive, setStep }: IProps) => {
       videoRef.current.play();
 
       setTimeout(() => {
-        setStep(3);
+        setStep(4);
       }, 4500);
     }
   }, [isActive]); // eslint-disable-line react-hooks/exhaustive-deps
