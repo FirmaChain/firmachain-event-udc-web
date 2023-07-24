@@ -1,4 +1,5 @@
 # **firmachain-event-udc-web**
+![UDC Airdrop event web](https://github.com/FirmaChain/firmachain-event-udc-web/assets/93503020/6cfd10ba-6c05-4a8c-9d01-ffbd7f9656ce)
 
 ## **Overview**
 firmachain-event-udc-web is a DApp developed for offline events. By using this DApp, users of FirmaStation mobile wallets can scan a QR code to connect their wallets to the DApp. Once the connection is established, users can directly receive and verify "__event tokens and NFTs__" in their wallets. In addition, event tokens can be converted to FCT through a specific swap application.
